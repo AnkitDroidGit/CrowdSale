@@ -1,26 +1,27 @@
 pragma solidity ^0.4.4;
 
 import "./IERC20.sol";
+import "../utils/SafeMath.sol";
 
 contract ERC20 is IERC20 {
 
-  using SafeMath for uint256;
+    using SafeMath for uint256;
 
-  mapping (address => uint256) private _balances;
+    mapping (address => uint256) private _balances;
 
-  mapping (address => mapping (address => uint256)) private _allowed;
+    mapping (address => mapping (address => uint256)) private _allowed;
 
-  uint256 private _totalSupply;
+    uint256 private _totalSupply;
 
   /**
-  * @dev Total number of tokens in existence
+  *  Total number of tokens in existence
   */
-  function totalSupply() public view returns (uint256) {
+   function totalSupply() public view returns (uint256) {
     return _totalSupply;
-  }
+   }
 
   /**
-  * @dev Gets the balance of the specified address.
+  *  Gets the balance of the specified address.
   * @param owner The address to query the balance of.
   * @return An uint256 representing the amount owned by the passed address.
   */
@@ -29,7 +30,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   *  Function to check the amount of tokens that an owner allowed to a spender.
    * @param owner address The address which owns the funds.
    * @param spender address The address which will spend the funds.
    * @return A uint256 specifying the amount of tokens still available for the spender.
@@ -46,7 +47,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-  * @dev Transfer token for a specified address
+  *  Transfer token for a specified address
   * @param to The address to transfer to.
   * @param value The amount to be transferred.
   */
@@ -56,7 +57,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   *  Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
    * Beware that changing an allowance with this method brings the risk that someone may use both the old
    * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
    * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
@@ -73,7 +74,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-   * @dev Transfer tokens from one address to another
+   *  Transfer tokens from one address to another
    * @param from address The address which you want to send tokens from
    * @param to address The address which you want to transfer to
    * @param value uint256 the amount of tokens to be transferred
@@ -92,7 +93,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-   * @dev Increase the amount of tokens that an owner allowed to a spender.
+   *  Increase the amount of tokens that an owner allowed to a spender.
    * approve should be called when allowed_[_spender] == 0. To increment
    * allowed value is better to use this function to avoid 2 calls (and wait until
    * the first transaction is mined)
@@ -116,7 +117,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-   * @dev Decrease the amount of tokens that an owner allowed to a spender.
+   *  Decrease the amount of tokens that an owner allowed to a spender.
    * approve should be called when allowed_[_spender] == 0. To decrement
    * allowed value is better to use this function to avoid 2 calls (and wait until
    * the first transaction is mined)
@@ -140,7 +141,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-  * @dev Transfer token for a specified addresses
+  *  Transfer token for a specified addresses
   * @param from The address to transfer from.
   * @param to The address to transfer to.
   * @param value The amount to be transferred.
@@ -154,7 +155,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-   * @dev Internal function that mints an amount of the token and assigns it to
+   *  Internal function that mints an amount of the token and assigns it to
    * an account. This encapsulates the modification of balances such that the
    * proper events are emitted.
    * @param account The account that will receive the created tokens.
@@ -169,7 +170,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-   * @dev Internal function that burns an amount of the token of a given
+   *  Internal function that burns an amount of the token of a given
    * account.
    * @param account The account whose tokens will be burnt.
    * @param value The amount that will be burnt.
@@ -183,7 +184,7 @@ contract ERC20 is IERC20 {
   }
 
   /**
-   * @dev Internal function that burns an amount of the token of a given
+   *  Internal function that burns an amount of the token of a given
    * account, deducting from the sender's allowance for said account. Uses the
    * internal burn function.
    * @param account The account whose tokens will be burnt.

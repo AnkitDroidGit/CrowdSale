@@ -3,14 +3,14 @@ pragma solidity ^0.4.4;
 import "../utils/ReentrancyGuard.sol";
 
 contract Crowdsale is ReentrancyGuard{
-  using SafeMath for uint256;
-  using SafeERC20 for IERC20;
+    using SafeMath for uint256;
+    using SafeERC20 for IERC20;
 
   // The token being sold
-  IERC20 private _token;
+    IERC20 private _token;
 
   // Address where funds are collected
-  address private _wallet;
+    address private _wallet;
 
   // How many token units a buyer gets per wei.
   // The rate is the conversion between wei and the smallest and indivisible token unit.
@@ -37,7 +37,7 @@ contract Crowdsale is ReentrancyGuard{
 
   /**
    * @param rate Number of token units a buyer gets per wei
-   * @dev The rate is the conversion between wei and the smallest and indivisible
+   *  The rate is the conversion between wei and the smallest and indivisible
    * token unit. So, if you are using a rate of 1 with a ERC20Detailed token
    * with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.
    * @param wallet Address where collected funds will be forwarded to
@@ -58,7 +58,7 @@ contract Crowdsale is ReentrancyGuard{
   // -----------------------------------------
 
   /**
-   * @dev fallback function ***DO NOT OVERRIDE***
+   *  fallback function ***DO NOT OVERRIDE***
    * Note that other contracts will transfer fund with a base gas stipend
    * of 2300, which is not enough to call buyTokens. Consider calling
    * buyTokens directly when purchasing tokens from a contract.
@@ -96,7 +96,7 @@ contract Crowdsale is ReentrancyGuard{
   }
 
   /**
-   * @dev low level token purchase ***DO NOT OVERRIDE***
+   *  low level token purchase ***DO NOT OVERRIDE***
    * This function has a non-reentrancy guard, so it shouldn't be called by
    * another `nonReentrant` function.
    * @param beneficiary Recipient of the token purchase
@@ -131,7 +131,7 @@ contract Crowdsale is ReentrancyGuard{
   // -----------------------------------------
 
   /**
-   * @dev Validation of an incoming purchase. Use require statements to revert state when conditions are not met. Use `super` in contracts that inherit from Crowdsale to extend their validations.
+   *  Validation of an incoming purchase. Use require statements to revert state when conditions are not met. Use `super` in contracts that inherit from Crowdsale to extend their validations.
    * Example from CappedCrowdsale.sol's _preValidatePurchase method:
    *   super._preValidatePurchase(beneficiary, weiAmount);
    *   require(weiRaised().add(weiAmount) <= cap);
@@ -150,7 +150,7 @@ contract Crowdsale is ReentrancyGuard{
   }
 
   /**
-   * @dev Validation of an executed purchase. Observe state and use revert statements to undo rollback when valid conditions are not met.
+   *  Validation of an executed purchase. Observe state and use revert statements to undo rollback when valid conditions are not met.
    * @param beneficiary Address performing the token purchase
    * @param weiAmount Value in wei involved in the purchase
    */
@@ -165,7 +165,7 @@ contract Crowdsale is ReentrancyGuard{
   }
 
   /**
-   * @dev Source of tokens. Override this method to modify the way in which the crowdsale ultimately gets and sends its tokens.
+   *  Source of tokens. Override this method to modify the way in which the crowdsale ultimately gets and sends its tokens.
    * @param beneficiary Address performing the token purchase
    * @param tokenAmount Number of tokens to be emitted
    */
@@ -179,7 +179,7 @@ contract Crowdsale is ReentrancyGuard{
   }
 
   /**
-   * @dev Executed when a purchase has been validated and is ready to be executed. Doesn't necessarily emit/send tokens.
+   *  Executed when a purchase has been validated and is ready to be executed. Doesn't necessarily emit/send tokens.
    * @param beneficiary Address receiving the tokens
    * @param tokenAmount Number of tokens to be purchased
    */
@@ -193,7 +193,7 @@ contract Crowdsale is ReentrancyGuard{
   }
 
   /**
-   * @dev Override for extensions that require an internal state to check for validity (current user contributions, etc.)
+   *  Override for extensions that require an internal state to check for validity (current user contributions, etc.)
    * @param beneficiary Address receiving the tokens
    * @param weiAmount Value in wei involved in the purchase
    */
@@ -207,7 +207,7 @@ contract Crowdsale is ReentrancyGuard{
   }
 
   /**
-   * @dev Override to extend the way in which ether is converted to tokens.
+   *  Override to extend the way in which ether is converted to tokens.
    * @param weiAmount Value in wei to be converted into tokens
    * @return Number of tokens that can be purchased with the specified _weiAmount
    */
@@ -218,7 +218,7 @@ contract Crowdsale is ReentrancyGuard{
   }
 
   /**
-   * @dev Determines how ETH is stored/forwarded on purchases.
+   *  Determines how ETH is stored/forwarded on purchases.
    */
   function _forwardFunds() internal {
     _wallet.transfer(msg.value);
